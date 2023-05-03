@@ -1,4 +1,4 @@
-name: Mirror to Gitlab Repo
+name: Mirror to GitLab Repo
 
 on: [ push, delete, create ]
 
@@ -13,11 +13,10 @@ jobs:
       - uses: wearerequired/git-mirror-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+#           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
         with:
           source-repo: "git@github.com:kathryn-garside/example-mirror-repo.git"
-          destination-repo: "git@gitlab.com:Kathryn-garside/example-mirror-target.git"
-          source-branch: "main"
-
+          destination-repo: "git@gitlab.com:kathryn-garside/example-mirror-target.git"
 
 
 
@@ -31,7 +30,7 @@ jobs:
 #     steps:                                              # <-- must use actions/checkout before mirroring!
 #       - uses: actions/checkout@v3
 #         with:
-#           fetch-depth: 1
+#           fetch-depth: 0
 #       - uses: pixta-dev/repository-mirroring-action@v1
 #         with:
 #           target_repo_url:
